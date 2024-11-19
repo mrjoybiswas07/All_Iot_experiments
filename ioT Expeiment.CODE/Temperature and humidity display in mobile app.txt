@@ -1,0 +1,30 @@
+#include <DHT.h>
+#include <BTAddress.h>
+#include <BTAdvertisedDevice.h>
+#include <BTScan.h>
+#include <BluetoothSerial.h>
+BluetoothSerial blt;
+DHT dht(2,DHT11);
+float t,h;
+char c;
+void setup() {
+ blt.begin("ESP32 DEVKIT V1");
+ dht.begin();
+}
+void loop() {
+ if(blt.available()){
+ c=blt.read();
+ }
+ t=dht.readTemperature();
+ h=dht.readHumidity();
+ if(c=='1'){
+ blt.print(t);
+ blt.print("*C");
+ }
+ else if(c=='2'){
+ blt.print(h);
+ blt.print("%");
+ }
+ delay(1000);
+ blt.flush();
+}

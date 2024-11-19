@@ -1,0 +1,22 @@
+
+String st;
+void setup() {
+ // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(7,OUTPUT);
+}
+void loop() {
+ // put your main code here, to run repeatedly:
+if(Serial.available())
+{
+ st=Serial.readString();
+}
+if(st=="on")
+{
+ digitalWrite(7,HIGH);
+}
+else if(st=="off")
+{
+ digitalWrite(7,LOW);
+}
+}

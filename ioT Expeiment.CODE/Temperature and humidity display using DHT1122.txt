@@ -1,0 +1,30 @@
+#include <LiquidCrystal_I2C.h>
+#include <DHT.h>
+DHT dht(2,DHT22);
+LiquidCrystal_I2C lcd(0x27,16,2);
+float t,h;
+void setup() {
+ // put your setup code here, to run once:
+lcd.init();
+lcd.backlight();
+dht.begin();
+}
+void loop() {
+ // put your main code here, to run repeatedly:
+t=dht.readTemperature();
+h=dht.readHumidity();
+lcd.setCursor(0,0);
+lcd.print("Temp: ");
+lcd.setCursor(6,0);
+lcd.print(t);
+lcd.setCursor(11,0);
+lcd.print("*C");
+lcd.setCursor(0,1);
+lcd.print("Humid: ");
+lcd.setCursor(7,1);
+lcd.print(h);
+lcd.setCursor(12,1);
+lcd.print("%");
+delay(100);
+lcd.clear();
+}

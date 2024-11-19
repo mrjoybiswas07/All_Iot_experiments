@@ -1,0 +1,20 @@
+#include <LiquidCrystal_I2C.h>
+#include <NewPing.h>
+NewPing ultra(2, 3, 500);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+int d;
+void setup() {
+lcd.init();
+lcd.backlight();
+}
+void loop() {
+d = ultra.ping_cm();
+lcd.setCursor(0, 0);
+lcd.print("Distance: ");
+lcd.setCursor(10, 0);
+lcd.print(d);
+lcd.setCursor(13, 0);
+lcd.print("c.m.");
+delay(100);
+lcd.clear();
+}

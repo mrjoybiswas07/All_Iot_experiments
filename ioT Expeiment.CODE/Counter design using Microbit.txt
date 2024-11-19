@@ -1,0 +1,12 @@
+from microbit import *
+value=0
+while True:
+ if(value < 10):
+ display.show(value)
+ else:
+ display.scroll(value)
+ if(value < 50):
+ value += 1
+ else:
+ value = 0
+ sleep(1000)

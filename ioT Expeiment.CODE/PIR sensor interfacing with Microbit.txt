@@ -1,0 +1,10 @@
+# Imports go at the top
+from microbit import *
+# Code in a 'while True:' loop repeats forever
+while True:
+ if(pin0.read_digital()==1):
+ pin1.write_digital(1)
+ display.show("Y")
+ else:
+ pin1.write_digital(0)
+ display.show("N")
